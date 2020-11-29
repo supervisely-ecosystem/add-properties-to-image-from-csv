@@ -1,7 +1,7 @@
-product,category,category_number,upc_code
-lemon, fruit, 1111, 7862129130012
-kiwi, fruit, 1111, 7862129130029
-apple, fruit, 1111, 7861030503700
-cabbage, vegetable, 2222, 8410470181161
-potato, vegetable, 2222, 8410470181178
-cucumber, vegetable, 2222, 8410470182222
+ITEM DESCRIPTION,CATEGORY,COMMERCIAL BRAND,SIZE,UPC CODE
+Honey Nut Toasted Oats,cereal,PICS,12.3 oz,12217777
+"Oats Cereal, Gluten Free",cereal,Honey Nut Cheerios,19.5 oz,807090338
+"Frosted Flakes, Breakfast Cereal, Original",cereal,Kellogg's,24 Oz,371107436
+Frozen Blueberry Pancakes,waffles & pancakes,De Wafelbakkers,29.6 Oz,13399284
+Buttermilk Waffles,waffles & pancakes,Great Value,29.6 oz,16382427
+Chocolately Chip Waffles Easy Breakfast,waffles & pancakes,Kellogg's,29.6 oz,13399285
