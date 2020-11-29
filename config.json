@@ -1,14 +1,15 @@
 {
-  "name": "App Template (No GUI)",
+  "name": "Add properties to image from CSV",
   "type": "app",
   "categories": [
-    "development"
+    "tags"
   ],
-  "description": "template for your headless app",
+  "description": "Match image tag with CSV columns and add other columns values to image",
   "docker_image": "supervisely/base-py-sdk:6",
-  "main_script": "src/my_super_script.py",
+  "main_script": "src/main.py",
   "task_location": "workspace_tasks",
-  "icon": "https://img.icons8.com/color/96/000000/console.png",
+  "icon": "https://img.icons8.com/color/96/000000/add-property.png",
   "icon_background": "#FFFFFF",
-  "headless": true
+  "headless": true,
+  "disable_stop": true
 }
