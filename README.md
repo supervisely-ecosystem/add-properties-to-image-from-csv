@@ -49,11 +49,7 @@ Chocolately Chip Waffles Easy Breakfast,waffles & pancakes,Kellogg's,29.6 oz,133
 
 Then copy path to the uploaded file:
 
-
 <img src="https://i.imgur.com/ZcxrGgR.png"/>
-
-
-
 
 # How To Run
 
@@ -61,7 +57,7 @@ Then copy path to the uploaded file:
 
 **Step 2:** Run app from the context menu of project
 
-
+<img src="https://i.imgur.com/UHkbfRS.png"/>
 
 
 during data aquisition -> labeling -> to help labelers
