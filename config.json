@@ -4,7 +4,7 @@
   "categories": [
     "tags"
   ],
-  "description": "Match image tag with CSV columns and add other columns values to image",
+  "description": "Match image tag with CSV columns and add row values to image",
   "docker_image": "supervisely/base-py-sdk:6",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
@@ -20,5 +20,6 @@
   "icon": "https://img.icons8.com/color/96/000000/add-property.png",
   "icon_background": "#FFFFFF",
   "headless": true,
-  "disable_stop": true
+  "disable_stop": true,
+  "context_menu": "images_project"
 }
