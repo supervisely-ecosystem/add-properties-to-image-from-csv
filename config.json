@@ -9,12 +9,12 @@
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
   "modal_template_state": {
-    "state.csvPath": "",
-    "state.tagName": "",
-    "state.columnName": "",
-    "state.assignAs": "metadata",
-    "state.resolve": "skip",
-    "state.resultProjectName": ""
+    "csvPath": "",
+    "tagName": "",
+    "columnName": "",
+    "assignAs": "metadata",
+    "resolve": "skip",
+    "resultProjectName": ""
   },
   "task_location": "workspace_tasks",
   "icon": "https://img.icons8.com/color/96/000000/add-property.png",
