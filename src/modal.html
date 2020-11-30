@@ -18,18 +18,32 @@
         <sly-icon slot="icon" :options="{ color: '#ceadff', bgColor: '#f6ebff', rounded: false }">
             <i class="zmdi zmdi-file-text"></i>
         </sly-icon>
-        <el-input placeholder="Please input tag name" v-model="state.tagName"></el-input>
+        <el-select v-model="state.assignAs">
+            <el-option key="metadata" label="as metadata" value="metadata"></el-option>
+            <el-option key="tags" label="as tags" value="tags"></el-option>
+        </el-select>
     </sly-field>
     <sly-field title="How to resolve conflicts if image already has same property"
                description="skip / replace / raise error">
         <sly-icon slot="icon" :options="{ color: '#ea9d22', bgColor: '#fcefd9', rounded: false }">
-            <i class="zmdi zmdi-file-text"></i>
+            <i class="zmdi zmdi-alert-triangle"></i>
         </sly-icon>
-        <el-input placeholder="Please input tag name" v-model="state.tagName"></el-input>
+        <el-select v-model="state.resolve">
+            <el-option key="skip" label="skip image" value="skip"></el-option>
+            <el-option key="replace" label="replace property" value="replace"></el-option>
+            <el-option key="raise" label="raise error and stop app" value="raise"></el-option>
+        </el-select>
+    </sly-field>
+    <sly-field title="Result project name"
+               description="New project is created, original project won't be changed.
+               Remove original project manually after operation if you want. Keep filed empty to autogenerate name:
+               'original name' + suffix ('_001', '_002', etc...)">
+        <sly-icon slot="icon" :options="{ color: '#2cd26e', bgColor: '#d8f8e7', rounded: false }">
+            <i class="zmdi zmdi-tag"></i>
+        </sly-icon>
+        <el-input placeholder="Please input result project name" v-model="state.resultProjectName"></el-input>
     </sly-field>
 </div>
-
-
 
 
 color: '#ea9d22', bgColor: '#fcefd9'
