@@ -50,7 +50,7 @@ Chocolately Chip Waffles Easy Breakfast,waffles & pancakes,Kellogg's,29.6 oz,133
 Then copy path to the uploaded file:
 
 
-<img src="https://i.imgur.com/YtI2Htx.png"/>
+<img src="https://i.imgur.com/ZcxrGgR.png"/>
 
 
 
