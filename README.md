@@ -55,11 +55,14 @@ Then copy path to the uploaded file:
 
 
 
-# add-properties-to-image-from-csv
-Find row in CSV file and attach row data to image (as tags or as metadata)
+# How To Run
+
+**Step 1:** Add app to your team from Ecosystem if it is not there.
+
+**Step 2:** Run app from the context menu of project
+
 
 
 
 during data aquisition -> labeling -> to help labelers
-
 Examples: retail, agriculture, self-driving cars, medicine ...
