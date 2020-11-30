@@ -20,10 +20,21 @@
 
 Application allows to add additional information to image from external databases. Developers add some identifiers to images during data aquisition quite often. But then additional human-readable information has to be assigned to images. Because ids are useless for labelers. 
 
-Let's consider the example from retail industry. The same intuition can be applied to other industries as well: agriculture, sel-driving cars, visul inspections and so on. Imaging that the task is to create reference images for every product in grocery store: label main object on every photo of grocery store shelves. But in many cases it is impossible to say what object is main: could you guess the main product on the picture from poster above just using `PRODUCT-ID:807090338`?
+Let's consider the example from retail industry. The same intuition can be applied to other industries as well: agriculture, self-driving cars, visul inspection and so on. Imaging that the task is to create reference images for every product in grocery store: label main object on every photo of grocery store shelves. But in many cases it is impossible to say what object is main: could you guess the main product on the picture from poster above just using `PRODUCT-ID:807090338`? But if we add information about product from our internal database (CSV file for simplicity), 
+
+```csv
+ITEM DESCRIPTION,CATEGORY,COMMERCIAL BRAND,SIZE,UPC CODE
+Honey Nut Toasted Oats,cereal,PICS,12.3 oz,12217777
+"Oats Cereal, Gluten Free",cereal,Honey Nut Cheerios,19.5 oz,807090338
+"Frosted Flakes, Breakfast",cereal,Kellogg's,24 Oz,371107436
+Frozen Blueberry Pancakes,waffles & pancakes,De Wafelbakkers,29.6 Oz,13399284
+Buttermilk Waffles,waffles & pancakes,Great Value,29.6 oz,16382427
+Chocolately Chip Waffles Easy Breakfast,waffles & pancakes,Kellogg's,29.6 oz,13399285
+```
+
+labelers will be able to find the right main product on the image.
 
 
-For example: in retail case it is a good idea to save product id (i.e. UPC code) of main object on the photos of grocery store shelves. This information might be really helpful during annotation process, because sometimes it is impossible to say, what main object has to be labeled (see banner). 
 
 # add-properties-to-image-from-csv
 Find row in CSV file and attach row data to image (as tags or as metadata)
