@@ -45,6 +45,12 @@ Buttermilk Waffles,waffles & pancakes,Great Value,29.6 oz,16382427
 Chocolately Chip Waffles Easy Breakfast,waffles & pancakes,Kellogg's,29.6 oz,13399285
 ```
 
+<img src="https://i.imgur.com/YtI2Htx.png"/>
+
+Then copy path to the uploaded file:
+
+
+<img src="https://i.imgur.com/YtI2Htx.png"/>
 
 
 
