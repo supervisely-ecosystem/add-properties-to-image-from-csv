@@ -61,4 +61,4 @@ Then copy path to the uploaded file:
 
 **Step 3:** Fill in the fields in modal window and press `Run` button
 
-<img src="https://i.imgur.com/iaQV5Sw.png"/>
+<img src="https://i.imgur.com/iaQV5Sw.png" width="600px"/>
