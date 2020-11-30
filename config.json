@@ -21,5 +21,7 @@
   "icon_background": "#FFFFFF",
   "headless": true,
   "disable_stop": true,
-  "context_menu": "images_project"
+  "context_menu": {
+    "target": ["images_project"]
+  }
 }
