@@ -13,7 +13,7 @@ IMAGE_TAG_NAME = os.environ["modal.state.tagName"]
 CSV_COLUMN_NAME = os.environ["modal.state.columnName"]
 ASSIGN_AS = os.environ["modal.state.assignAs"]
 RESOLVE = os.environ["modal.state.resolve"]
-RESULT_PROJECT_NAME = os.environ["modal.state.resultProjectName"]
+RES_PROJECT_NAME = os.environ["modal.state.resultProjectName"]
 
 PROJECT = None
 RES_PROJECT = None
@@ -45,6 +45,8 @@ def read_csv_and_create_index():
             filtered_row.pop(CSV_COLUMN_NAME, None)
             CSV_INDEX[row[CSV_COLUMN_NAME].strip()] = filtered_row
 
+    sly.fs.silent_remove(csv_path_local)
+
 
 def read_and_validate_project_meta():
     global META, RES_META
@@ -70,11 +72,9 @@ def add_tags_to_meta():
             elif RESOLVE == "raise":
                 raise RuntimeError("Tag {!r} already exists in project {!r}".format(tag_meta.name, PROJECT.name))
 
-    api.project.update_meta(RES_PROJECT.id, RES_META.to_json())
-
 
 def assign_csv_row_as_metadata(image_id, image_name, input_meta, row):
-    same_keys = dict_a.keys() & dict_b.keys()
+    same_keys = input_meta.keys() & row.keys()
     if len(same_keys) > 0:
         if RESOLVE == "skip":
             my_app.logger.warn("Image {!r} (id={}): duplicate keys {} in metadata. Image is skipped"
@@ -109,22 +109,22 @@ def assign_csv_row_as_tags(image_id, image_name, res_ann, row):
 
 
 def main():
-    global PROJECT, RES_PROJECT, RESULT_PROJECT_NAME
+    global PROJECT, RES_PROJECT, RES_PROJECT_NAME
 
     PROJECT = api.project.get_info_by_id(PROJECT_ID)
-    if RESULT_PROJECT_NAME == "":
-        RESULT_PROJECT_NAME = PROJECT.name
+    if RES_PROJECT_NAME == "":
+        RES_PROJECT_NAME = PROJECT.name
 
     read_and_validate_project_meta()
     read_csv_and_create_index()
 
-    RES_PROJECT = api.project.create(WORKSPACE_ID, RESULT_PROJECT_NAME, change_name_if_conflict=True)
+    RES_PROJECT = api.project.create(WORKSPACE_ID, RES_PROJECT_NAME, change_name_if_conflict=True)
     my_app.logger.info("Result Project is created (name={!r}; id={})".format(RES_PROJECT.name, RES_PROJECT.id))
 
     if ASSIGN_AS == "tags":
         add_tags_to_meta()
-    else:
-        api.project.update_meta(RES_PROJECT.id, RES_META.to_json())
+
+    api.project.update_meta(RES_PROJECT.id, RES_META.to_json())
 
     progress = sly.Progress("Processing", PROJECT.images_count, ext_logger=my_app.logger)
     for dataset in api.dataset.get_list(PROJECT.id):
@@ -171,7 +171,7 @@ def main():
                 res_anns.append(res_ann)
                 res_metas.append(res_meta)
 
-            res_image_infos = api.image.upload_ids(res_dataset.id, res_image_names, original_ids, res_metas)
+            res_image_infos = api.image.upload_ids(res_dataset.id, res_image_names, original_ids, metas=res_metas)
             res_image_ids = [image_info.id for image_info in res_image_infos]
             api.annotation.upload_anns(res_image_ids, res_anns)
             progress.iters_done_report(len(res_image_ids))
