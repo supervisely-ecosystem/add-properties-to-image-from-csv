@@ -62,3 +62,10 @@ Then copy path to the uploaded file:
 **Step 3:** Fill in the fields in modal window and press `Run` button
 
 <img src="https://i.imgur.com/iaQV5Sw.png" width="600px"/>
+
+**Step 4:** Wait until the task is finished, new project will be created, find link in task output
+
+<img src="https://i.imgur.com/ziEkbmL.png" width="600px"/>
+
+**Step 5:** All warnings and errors can be found in task log
+
