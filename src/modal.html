@@ -1,0 +1,35 @@
+<div>
+    <sly-field title="Image tag name"
+               description="Define the name of tag that will be used for matching with CSV column">
+        <sly-icon slot="icon" :options="{ color: '#2cd26e', bgColor: '#d8f8e7', rounded: false }">
+            <i class="zmdi zmdi-tag"></i>
+        </sly-icon>
+        <el-input placeholder="Please input tag name" v-model="state.tagName"></el-input>
+    </sly-field>
+    <sly-field title="CSV column name"
+               description="Define the name of column in CSV file that will be used for matching with image tag">
+        <sly-icon slot="icon" :options="{ color: '#2cd26e', bgColor: '#d8f8e7', rounded: false }">
+            <i class="zmdi zmdi-file-text"></i>
+        </sly-icon>
+        <el-input placeholder="Please input tag name" v-model="state.tagName"></el-input>
+    </sly-field>
+    <sly-field title="How to assign new properties from CSV row to image"
+               description="assign as tags or metadata">
+        <sly-icon slot="icon" :options="{ color: '#ceadff', bgColor: '#f6ebff', rounded: false }">
+            <i class="zmdi zmdi-file-text"></i>
+        </sly-icon>
+        <el-input placeholder="Please input tag name" v-model="state.tagName"></el-input>
+    </sly-field>
+    <sly-field title="How to resolve conflicts if image already has same property"
+               description="skip / replace / raise error">
+        <sly-icon slot="icon" :options="{ color: '#ea9d22', bgColor: '#fcefd9', rounded: false }">
+            <i class="zmdi zmdi-file-text"></i>
+        </sly-icon>
+        <el-input placeholder="Please input tag name" v-model="state.tagName"></el-input>
+    </sly-field>
+</div>
+
+
+
+
+color: '#ea9d22', bgColor: '#fcefd9'
