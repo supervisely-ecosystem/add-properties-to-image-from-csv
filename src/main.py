@@ -176,7 +176,7 @@ def main():
             api.annotation.upload_anns(res_image_ids, res_anns)
             progress.iters_done_report(len(res_image_ids))
 
-    api.task.set_output_project(task_id, RES_PROJECT.id, RES_PROJECT.name)
+    api.task.set_output_project(my_app.task_id, RES_PROJECT.id, RES_PROJECT.name)
 
 
 if __name__ == "__main__":
