@@ -59,6 +59,6 @@ Then copy path to the uploaded file:
 
 <img src="https://i.imgur.com/UHkbfRS.png"/>
 
+**Step 3:** Fill in the fields in modal window and press `Run` button
 
-during data aquisition -> labeling -> to help labelers
-Examples: retail, agriculture, self-driving cars, medicine ...
+<img src="https://i.imgur.com/iaQV5Sw.png"/>
