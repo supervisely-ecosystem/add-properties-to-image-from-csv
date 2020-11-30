@@ -20,7 +20,14 @@
 
 Application allows to add additional information to image from external databases. Developers add some identifiers to images during data aquisition quite often. But then additional human-readable information has to be assigned to images. Because ids are useless for labelers. 
 
-Let's consider the example from retail industry. The same intuition can be applied to other industries as well: agriculture, self-driving cars, visul inspection and so on. Imaging that the task is to create reference images for every product in grocery store: label main object on every photo of grocery store shelves. But in many cases it is impossible to say what object is main: could you guess the main product on the picture from poster above just using `PRODUCT-ID:807090338`? But if we add information about product from our internal database (CSV file for simplicity), 
+Let's consider the example from retail industry. The same intuition can be applied to other industries as well: agriculture, self-driving cars, visul inspection and so on. Imaging that the task is to create reference images for every product in grocery store: label main object on every photo of grocery store shelves. But in many cases it is impossible to say what object is main: could you guess the main product on the picture from poster above just using `PRODUCT-ID:807090338`? 
+
+
+But if we add information about product from our internal database (CSV file for simplicity), 
+
+<img src="https://i.imgur.com/jtfh7mH.png"/>
+
+labelers will be able to find the right main product on the image.
 
 ```csv
 ITEM DESCRIPTION,CATEGORY,COMMERCIAL BRAND,SIZE,UPC CODE
@@ -32,7 +39,7 @@ Buttermilk Waffles,waffles & pancakes,Great Value,29.6 oz,16382427
 Chocolately Chip Waffles Easy Breakfast,waffles & pancakes,Kellogg's,29.6 oz,13399285
 ```
 
-labelers will be able to find the right main product on the image.
+
 
 
 
