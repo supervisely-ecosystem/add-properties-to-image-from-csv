@@ -57,7 +57,7 @@ Then copy path to the uploaded file:
 
 **Step 2:** Run app from the context menu of project
 
-<img src="https://i.imgur.com/UHkbfRS.png"/>
+<img src="https://i.imgur.com/UHkbfRS.png" width="500px"/>
 
 **Step 3:** Fill in the fields in modal window and press `Run` button
 
