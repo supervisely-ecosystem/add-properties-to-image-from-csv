@@ -65,7 +65,7 @@ Then copy path to the uploaded file:
 
 **Step 4:** Wait until the task is finished, new project will be created, find link in task output
 
-<img src="https://i.imgur.com/ziEkbmL.png" width="600px"/>
+<img src="https://i.imgur.com/ziEkbmL.png"/>
 
 **Step 5:** All warnings and errors can be found in task log
 
