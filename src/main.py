@@ -86,6 +86,28 @@ def assign_csv_row_as_metadata(image_id, image_name, input_meta, row):
     return {**input_meta, **row}
 
 
+def assign_csv_row_as_tags(image_id, image_name, res_ann, row):
+    new_tags = []
+    for k, v in row.items():
+        tag_meta = RES_META.get_tag_meta(k)
+        if tag_meta is None:
+            raise RuntimeError("Tag {!r} not found in resulting project {!r}".format(k, RES_PROJECT.name))
+        existing_tag = res_ann.img_tags.get(k)
+        if existing_tag is None:
+            new_tags.append(sly.Tag(tag_meta, value=v))
+        else:
+            if RESOLVE == "skip":
+                continue
+            elif RESOLVE == "raise":
+                raise KeyError("Image {!r} (id={}): tag {!r} exists".format(image_name, image_id, k))
+            elif RESOLVE == "replace":
+                res_ann = res_ann.delete_tag_by_name(k)
+                new_tags.append(sly.Tag(tag_meta, value=v))
+
+    res_ann = res_ann.add_tags(new_tags)
+    return res_ann
+
+
 def main():
     global PROJECT, RES_PROJECT, RESULT_PROJECT_NAME
 
@@ -104,6 +126,7 @@ def main():
     else:
         api.project.update_meta(RES_PROJECT.id, RES_META.to_json())
 
+    progress = sly.Progress("Processing", PROJECT.images_count, ext_logger=my_app.logger)
     for dataset in api.dataset.get_list(PROJECT.id):
         res_dataset = api.dataset.create(RES_PROJECT.id, dataset.name)
         ds_images = api.image.get_list(dataset.id)
@@ -115,8 +138,8 @@ def main():
             ann_infos = api.annotation.download_batch(dataset.id, image_ids)
             anns = [sly.Annotation.from_json(ann_info.annotation, META) for ann_info in ann_infos]
 
-            final_ids = []
-            res_image_name = []
+            original_ids = []
+            res_image_names = []
             res_anns = []
             res_metas = []
 
@@ -125,128 +148,34 @@ def main():
                 if tag is None:
                     my_app.logger.warn("Image {!r} in dataset {!r} doesn't have tag {!r}. Image is skipped"
                                        .format(image_name, dataset.name, IMAGE_TAG_NAME))
+                    progress.iter_done_report()
                     continue
 
                 csv_row = CSV_INDEX.get(str(tag.value), None)
                 if csv_row is None:
                     my_app.logger.warn("Match not found (id={}, name={!r}, dataset={!r}, tag_value={!r}). Image is skipped"
                                        .format(image_id, image_name, dataset.name, str(tag.value)))
+                    progress.iter_done_report()
                     continue
 
                 res_ann = ann.clone()
                 res_meta = image_meta.copy()
 
                 if ASSIGN_AS == "tags":
-                    pass
+                    res_ann = assign_csv_row_as_tags(image_id, image_name, res_ann, csv_row)
                 else:  # metadata
-                    res_meta = assign_csv_row_as_metadata(image_meta, csv_row)
+                    res_meta = assign_csv_row_as_metadata(image_id, image_name, image_meta, csv_row)
 
-                final_ids.append(image_id)
-                res_image_name.append(image_name)
+                original_ids.append(image_id)
+                res_image_names.append(image_name)
                 res_anns.append(res_ann)
                 res_metas.append(res_meta)
 
-
-
+            res_image_infos = api.image.upload_ids(res_dataset.id, res_image_names, original_ids, res_metas)
+            res_image_ids = [image_info.id for image_info in res_image_infos]
+            api.annotation.upload_anns(res_image_ids, res_anns)
+            progress.iters_done_report(len(res_image_ids))
 
 
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
-
-
-exit(0)
-#
-# PROJECT_ID = 1014
-# DATASET_ID = 1234
-# CSV_DELIMITER = ','
-#
-# ASSIGN_INFO_TO_IMAGE = True #or False (default True)
-#
-# csv_index = {}
-#
-# def normalize_row(row):
-#   for key in row:
-#     row[key] = row[key].strip()
-#
-#
-#
-# def get_matched_row(tags, csv_index):
-#   for tag in tags:
-#     if tag['name'] == IMAGE_TAG_NAME and tag['value'] is not None and str(tag['value']) in csv_index:
-#       return csv_index[tag['value']]
-#   return None
-#
-#
-# def get_new_entity_tags(entity_tags, csv_row):
-#     cur_tags_exists_dict = set()
-#     new_tags = []
-#
-#     for tag in entity_tags:
-#         cur_tags_exists_dict.add(tag['name'])
-#
-#     for tagName in csv_row:
-#         if tagName == CSV_COLUMN_NAME: continue
-#         if tagName in cur_tags_exists_dict: continue
-#
-#         new_tags.append({
-#             'name': tagName,
-#             'value': csv_row[tagName],
-#         })
-#     return new_tags
-#
-#
-# def check_project_tags(new_entity_tags, project_tags_by_name, current_project_tags_batch):
-#     for tag in new_entity_tags:
-#         if tag["name"] not in project_tags_by_name and tag["name"] not in current_project_tags_batch:
-#             current_project_tags_batch.add(tag["name"])
-#
-#
-# def generate_colors(count):
-#     colors = []
-#
-#     for _ in range(count):
-#         new_color = sly.color.generate_rgb(colors)
-#         colors.append(sly.color.rgb2hex(new_color))
-#
-#     return colors
-#
-# project_tags = get_list_all_pages(api, "tags.list", {"projectId": PROJECT_ID})
-# project_tags_by_name = {}
-#
-# for tag in project_tags:
-#     project_tags_by_name[tag["name"]] = tag
-#
-# project_tags = None
-#
-#
-# for images_ann in getAnnsIterator(api, {'datasetId': DATASET_ID}):
-#   current_project_tags_batch = set()
-#   images_tags = []
-#   figures_tags = []
-#
-#     for img_ann in images_ann:
-#         cur_img_id = img_ann['imageId']
-# #if
-#     matched_row = get_matched_row(img_ann['annotation']['tags'], csv_index)
-#
-#     if matched_row:
-#         current_new_tags = get_new_entity_tags(img_ann['annotation']['tags'], matched_row)
-#         check_project_tags(current_new_tags, project_tags_by_name, current_project_tags_batch)
-#         # if
-#     if len(current_project_tags_batch) > 0:
-#         colors = generate_colors(len(current_project_tags_batch))
-#         tags = []
-#
-#         for tag_name, color in zip(current_project_tags_batch, colors):
-#             tags.append({"name": tag_name,
-#                          "color": color,
-#                          "settings": {"type": TagValueType.ANY_STRING}
-#                          })
-#
-#         new_project_tags = api.post("tags.bulk.add", {
-#             "projectId": PROJECT_ID,
-#             "tags": tags
-#         }).json()
-#
-#         for new_tag in new_project_tags:
-#             project_tags_by_name[new_tag["name"]] = new_tag
