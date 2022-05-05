@@ -22,6 +22,9 @@
   "headless": true,
   "disable_stop": true,
   "context_menu": {
-    "target": ["images_project"]
-  }
+    "target": [
+      "images_project"
+    ]
+  },
+  "poster": "https://i.imgur.com/Wshzsv0.png"
 }
