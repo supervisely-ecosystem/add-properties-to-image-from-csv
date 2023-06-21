@@ -27,7 +27,7 @@ Let's consider the example from retail industry. The same intuition can be appli
 
 But if we add information about product like category, item description, size, etc ... from our internal database (CSV file for simplicity), then labelers will be able to find the right main product on the image.
 
-<img src="https://i.imgur.com/jtfh7mH.png"/>
+<img src="media/68747470733a2f2f692e696d6775722e636f6d2f6a746668376d482e706e67.png"/>
 
 To add properties to images it is needed to provide `CSV` file, name of image tag and name of csv column that will be used to match correct row from CSV with image. App takes given tag value from image, finds value in defined column and copies other columns of found CSV row to image. 
 
@@ -46,11 +46,11 @@ Buttermilk Waffles,waffles & pancakes,Great Value,29.6 oz,16382427
 Chocolately Chip Waffles Easy Breakfast,waffles & pancakes,Kellogg's,29.6 oz,13399285
 ```
 
-<img src="https://i.imgur.com/YtI2Htx.png"/>
+<img src="media/68747470733a2f2f692e696d6775722e636f6d2f597449324874782e706e67.png"/>
 
 Then copy path to the uploaded file:
 
-<img src="https://i.imgur.com/ZcxrGgR.png"/>
+<img src="media/68747470733a2f2f692e696d6775722e636f6d2f5a6378724767522e706e67.png"/>
 
 # How To Run
 
@@ -58,15 +58,15 @@ Then copy path to the uploaded file:
 
 **Step 2:** Run app from the context menu of project
 
-<img src="https://i.imgur.com/UHkbfRS.png" width="500px"/>
+<img src="media/68747470733a2f2f692e696d6775722e636f6d2f55486b626652532e706e67.png" width="500px"/>
 
 **Step 3:** Fill in the fields in modal window and press `Run` button
 
-<img src="https://i.imgur.com/iaQV5Sw.png" width="600px"/>
+<img src="media/68747470733a2f2f692e696d6775722e636f6d2f696151563553772e706e67.png" width="600px"/>
 
 **Step 4:** Wait until the task is finished, new project will be created, find link in task output
 
-<img src="https://i.imgur.com/ziEkbmL.png"/>
+<img src="media/68747470733a2f2f692e696d6775722e636f6d2f7a69456b626d4c2e706e67.png"/>
 
 **Step 5:** All warnings and errors can be found in task log
 
