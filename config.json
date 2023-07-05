@@ -19,7 +19,7 @@
     "resultProjectName": ""
   },
   "task_location": "workspace_tasks",
-  "icon": "https://img.icons8.com/color/96/000000/add-property.png",
+  "icon": "media/icon.png",
   "icon_background": "#FFFFFF",
   "headless": true,
   "disable_stop": true,
