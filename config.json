@@ -7,7 +7,7 @@
     "metadata"
   ],
   "description": "Match image tag with CSV columns and add row values to image",
-  "docker_image": "supervisely/base-py-sdk:6.72.56",
+  "docker_image": "supervisely/base-py-sdk:6.72.70",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
   "modal_template_state": {
