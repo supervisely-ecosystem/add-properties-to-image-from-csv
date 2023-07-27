@@ -1,32 +1,32 @@
 {
-  "name": "Add properties to image from CSV",
-  "type": "app",
-  "categories": [
-    "import",
-    "images",
-    "metadata"
-  ],
-  "description": "Match image tag with CSV columns and add row values to image",
-  "docker_image": "supervisely/base-py-sdk:6.72.70",
-  "main_script": "src/main.py",
-  "modal_template": "src/modal.html",
-  "modal_template_state": {
-    "csvPath": "",
-    "tagName": "",
-    "columnName": "",
-    "assignAs": "metadata",
-    "resolve": "skip",
-    "resultProjectName": ""
-  },
-  "task_location": "workspace_tasks",
-  "icon": "https://img.icons8.com/color/96/000000/add-property.png",
-  "icon_background": "#FFFFFF",
-  "headless": true,
-  "disable_stop": true,
-  "context_menu": {
-    "target": [
-      "images_project"
-    ]
-  },
-  "poster": "https://user-images.githubusercontent.com/48245050/182402861-602040b3-a489-4f1c-9225-0558eac0f1bb.png"
+    "name": "Add properties to image from CSV",
+    "type": "app",
+    "categories": [
+        "import",
+        "images",
+        "metadata"
+    ],
+    "description": "Match image tag with CSV columns and add row values to image",
+    "docker_image": "supervisely/import-export:0.0.2",
+    "main_script": "src/main.py",
+    "modal_template": "src/modal.html",
+    "modal_template_state": {
+        "csvPath": "",
+        "tagName": "",
+        "columnName": "",
+        "assignAs": "metadata",
+        "resolve": "skip",
+        "resultProjectName": ""
+    },
+    "task_location": "workspace_tasks",
+    "icon": "https://img.icons8.com/color/96/000000/add-property.png",
+    "icon_background": "#FFFFFF",
+    "headless": true,
+    "disable_stop": true,
+    "context_menu": {
+        "target": [
+            "images_project"
+        ]
+    },
+    "poster": "https://user-images.githubusercontent.com/48245050/182402861-602040b3-a489-4f1c-9225-0558eac0f1bb.png"
 }
