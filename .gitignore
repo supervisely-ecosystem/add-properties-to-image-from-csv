@@ -2,3 +2,4 @@
 venv
 secret_debug.env
 *.xlsx
+.DS_Store
