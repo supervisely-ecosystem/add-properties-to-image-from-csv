@@ -54,7 +54,7 @@ def read_and_validate_project_meta():
     META = sly.ProjectMeta.from_json(meta_json)
     tag_meta = META.get_tag_meta(IMAGE_TAG_NAME)
     if tag_meta is None:
-        raise ValueError("Tag {!r} not found in project {!r}".format(IMAGE_TAG_NAME, project.name))
+        raise ValueError("Tag {!r} not found in project {!r}".format(IMAGE_TAG_NAME, PROJECT.name))
     RES_META = META.clone()
 
 
