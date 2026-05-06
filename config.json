@@ -1,6 +1,7 @@
 {
     "name": "Add properties to image from CSV",
     "type": "app",
+    "instance_version": "6.15.60",
     "categories": [
         "import",
         "images",
